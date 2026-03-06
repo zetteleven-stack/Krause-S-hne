@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Reservierung bestätigt — Bella Italia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--rouge:#9b2c2c;--gold:#c9a84c;--ink:#19120b;--muted:#7a6e62;--ivory:#f7f2ea;--serif:'Cormorant Garamond',serif;--sans:'Jost',sans-serif}
+body{font-family:var(--sans);background:var(--ink);color:#fff;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;text-align:center;-webkit-font-smoothing:antialiased}
+.icon{width:64px;height:64px;border-radius:50%;border:1px solid rgba(201,168,76,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;color:var(--gold);font-size:24px}
+.pre{font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;font-weight:300}
+h1{font-family:var(--serif);font-style:italic;font-size:clamp(36px,8vw,72px);font-weight:300;line-height:.95;margin-bottom:18px}
+p{font-size:14px;color:rgba(255,255,255,.45);line-height:1.8;max-width:380px;margin:0 auto 36px}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--rouge);color:#fff;padding:14px 30px;font-family:var(--sans);font-size:10px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:opacity .2s}
+.btn:hover{opacity:.85}
+.logo{position:fixed;top:24px;left:50%;transform:translateX(-50%);font-family:var(--serif);font-style:italic;font-size:20px;color:rgba(255,255,255,.3);white-space:nowrap}
+</style>
+</head>
+<body>
+<div class="logo">Bella Italia</div>
+<div class="icon">✓</div>
+<p class="pre">Prenotazione confermata</p>
+<h1>Grazie<br>mille!</h1>
+<p>Ihre Reservierungsanfrage ist eingegangen.<br>Wir bestätigen Ihren Tisch innerhalb von 30 Minuten per E-Mail.</p>
+<a href="reservierung.html" class="btn">Weitere Reservierung →</a>
+</body>
+</html>
