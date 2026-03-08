@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="description" content="Krause & Söhne GmbH – Meisterbetrieb für Hoch- und Ausbau, Sanität, Elektro und Innenausbau in Berlin. Gegründet 1978. ISO 9001 zertifiziert."/>
+<title>Krause &amp; Söhne GmbH – Baumeister Berlin seit 1978</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+:root{
+  --navy:#0D1B2A;--navy2:#132234;--navy3:#1B2E42;
+  --steel:#2C4A6E;--mid:#4A6FA5;--slate:#7A8FA8;--mist:#B8C8D8;
+  --cream:#F4F1EC;--cream2:#EAE5DC;--white:#FAFAFA;
+  --accent:#C8A96E;--accent2:#A8885A;
+  --line:rgba(184,200,216,.12);--line2:rgba(184,200,216,.06);
+  --serif:'EB Garamond',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --mono:'DM Mono',monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --px:clamp(24px,5vw,72px);
+}
+body{font-family:var(--sans);background:var(--white);color:var(--navy);overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor:none}
+a{text-decoration:none;color:inherit}
+img{display:block;width:100%;height:100%;object-fit:cover}
+
+/* CURSOR */
+#cur{width:8px;height:8px;background:var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .15s}
+#cur-ring{width:32px;height:32px;border:1px solid var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.25;transition:width .3s,height .3s,opacity .3s}
+
+/* NAV */
+nav{position:fixed;inset:0 0 auto;z-index:900;height:72px;display:flex;align-items:center;padding:0 var(--px);background:rgba(250,250,250,.97);border-bottom:1px solid rgba(13,27,42,.07);backdrop-filter:blur(14px);transition:box-shadow .3s}
+nav.raised{box-shadow:0 2px 32px rgba(13,27,42,.09)}
+.brand{display:flex;align-items:baseline;gap:0;margin-right:auto}
+.brand-main{font-family:var(--serif);font-size:1.3rem;font-weight:600;color:var(--navy);letter-spacing:.01em}
+.brand-main span{color:var(--accent2)}
+.brand-sub{font-family:var(--mono);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--slate);margin-left:16px}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);transition:color .25s}
+.nav-links a:hover{color:var(--navy)}
+.nav-cta{background:var(--navy)!important;color:var(--white)!important;padding:10px 22px;transition:background .25s,transform .2s!important}
+.nav-cta:hover{background:var(--steel)!important;transform:translateY(-1px)}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+.ham span{display:block;width:24px;height:1.5px;background:var(--navy);transition:transform .3s,opacity .3s}
+.ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mob-nav{position:fixed;inset:72px 0 0;background:rgba(250,250,250,.98);backdrop-filter:blur(14px);z-index:850;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;visibility:hidden;transition:opacity .4s var(--ease),visibility .4s}
+.mob-nav.open{opacity:1;visibility:visible}
+.mob-nav a{font-family:var(--serif);font-size:clamp(28px,6vw,44px);font-weight:500;color:var(--navy);transition:color .2s}
+.mob-nav a:hover{color:var(--steel)}
+.mob-nav .mob-cta{font-family:var(--mono);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;background:var(--navy);color:var(--white);padding:14px 32px;margin-top:8px}
+
+/* HERO */
+.hero{min-height:100svh;background:var(--navy);display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
+.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(184,200,216,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(184,200,216,.04) 1px,transparent 1px);background-size:52px 52px;pointer-events:none}
+.hero-img-overlay{position:absolute;inset:0;pointer-events:none}
+.hero-img-overlay img{width:100%;height:100%;object-fit:cover;filter:brightness(.18) saturate(.5)}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:140px var(--px) 100px;position:relative;z-index:2}
+.hero-eyebrow{display:flex;align-items:center;gap:16px;margin-bottom:40px}
+.hero-ey-line{width:36px;height:1px;background:var(--accent)}
+.hero-ey-txt{font-family:var(--mono);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+.hero h1{font-family:var(--serif);font-size:clamp(3rem,5.5vw,5.4rem);font-weight:500;line-height:1.06;color:var(--white);margin-bottom:32px}
+.hero h1 em{font-style:italic;color:var(--mist)}
+.hero-desc{font-size:.95rem;font-weight:300;line-height:1.9;color:var(--slate);max-width:430px;margin-bottom:52px;letter-spacing:.015em}
+.hero-actions{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.btn-primary{background:var(--accent);color:var(--navy);padding:14px 34px;font-family:var(--mono);font-size:.7rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;transition:all .3s}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 10px 30px rgba(200,169,110,.22)}
+.btn-ghost-light{color:var(--mist);font-family:var(--mono);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;border-bottom:1px solid rgba(184,200,216,.3);padding-bottom:2px;transition:all .3s}
+.btn-ghost-light:hover{color:var(--white);border-color:var(--white)}
+.hero-right{display:flex;flex-direction:column;justify-content:center;padding:140px var(--px) 100px 0;position:relative;z-index:2;align-items:flex-end;gap:0}
+.hero-stats{display:flex;flex-direction:column;border-left:1px solid var(--line);width:100%}
+.h-stat{padding:28px 48px;border-bottom:1px solid var(--line);text-align:right;transition:background .3s;cursor:default}
+.h-stat:last-child{border-bottom:none}
+.h-stat:hover{background:rgba(184,200,216,.04)}
+.h-stat-num{font-family:var(--serif);font-size:3.2rem;font-weight:500;color:var(--white);line-height:1;letter-spacing:-.01em}
+.h-stat-num sup{font-size:1.4rem;color:var(--accent);vertical-align:super}
+.h-stat-label{font-family:var(--mono);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--slate);margin-top:5px}
+
+/* TRUST BAR */
+.trustbar{background:var(--cream2);border-top:1px solid rgba(13,27,42,.07);border-bottom:1px solid rgba(13,27,42,.07);overflow:hidden;padding:14px 0}
+.tb-track{display:flex;gap:72px;align-items:center;animation:mq 30s linear infinite;white-space:nowrap}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tb-item{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:.62rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--steel)}
+.tb-dot{width:4px;height:4px;background:var(--accent);border-radius:50%;flex-shrink:0}
+
+/* LEISTUNGEN */
+.sec-leistungen{background:var(--white);padding:clamp(72px,10vw,128px) var(--px)}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:64px;padding-bottom:36px;border-bottom:1px solid rgba(13,27,42,.08);flex-wrap:wrap;gap:20px}
+.eyebrow{font-family:var(--mono);font-size:.6rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--accent2);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:'';width:20px;height:1px;background:var(--accent2);flex-shrink:0}
+.sec-title{font-family:var(--serif);font-size:clamp(2rem,3.5vw,3rem);font-weight:500;color:var(--navy);line-height:1.1;letter-spacing:-.01em}
+.sec-title em{font-style:italic;color:var(--steel)}
+.srv-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(13,27,42,.08);border-left:1px solid rgba(13,27,42,.08)}
+.srv-card{border-right:1px solid rgba(13,27,42,.08);border-bottom:1px solid rgba(13,27,42,.08);padding:48px 40px;display:block;position:relative;overflow:hidden;transition:all .35s;cursor:pointer;text-decoration:none;color:inherit}
+.srv-card:hover{background:var(--navy)}
+.srv-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+.srv-card:hover::after{transform:scaleX(1)}
+.srv-n{font-family:var(--mono);font-size:.56rem;letter-spacing:.2em;color:var(--slate);margin-bottom:36px;display:block;transition:color .3s}
+.srv-card:hover .srv-n{color:var(--accent)}
+.srv-ico{width:44px;height:44px;margin-bottom:24px}
+.srv-ico svg{width:100%;height:100%}
+.srv-name{font-family:var(--serif);font-size:1.45rem;font-weight:500;color:var(--navy);margin-bottom:14px;line-height:1.2;transition:color .3s}
+.srv-card:hover .srv-name{color:var(--white)}
+.srv-p{font-size:.85rem;font-weight:300;line-height:1.78;color:var(--slate);transition:color .3s}
+.srv-card:hover .srv-p{color:var(--mist)}
+.srv-arr{margin-top:32px;font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:8px;opacity:0;transform:translateY(6px);transition:all .3s .05s}
+.srv-card:hover .srv-arr{opacity:1;transform:none}
+
+/* REFERENZ-BILDER */
+.sec-referenzen{background:var(--cream);padding:clamp(72px,10vw,128px) var(--px)}
+.ref-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:280px 280px;gap:4px;margin-top:64px}
+.ref-item{position:relative;overflow:hidden;cursor:pointer}
+.ref-item:nth-child(1){grid-column:1/7;grid-row:1/3}
+.ref-item:nth-child(2){grid-column:7/10;grid-row:1/2}
+.ref-item:nth-child(3){grid-column:10/13;grid-row:1/2}
+.ref-item:nth-child(4){grid-column:7/10;grid-row:2/3}
+.ref-item:nth-child(5){grid-column:10/13;grid-row:2/3}
+.ref-item img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease),filter .5s}
+.ref-item:hover img{transform:scale(1.06);filter:brightness(.65)}
+.ref-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,27,42,.88) 0%,transparent 50%);pointer-events:none}
+.ref-body{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:28px}
+.ref-tag{font-family:var(--mono);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;opacity:0;transform:translateY(6px);transition:all .3s .05s}
+.ref-item:hover .ref-tag{opacity:1;transform:none}
+.ref-name{font-family:var(--serif);font-size:1.2rem;font-weight:500;color:var(--white);margin-bottom:3px}
+.ref-item:nth-child(1) .ref-name{font-size:1.7rem}
+.ref-loc{font-size:.78rem;color:var(--mist);font-weight:300}
+
+/* ÜBER UNS */
+.sec-ueber{background:var(--navy);padding:0 var(--px);display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
+.ueber-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(184,200,216,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(184,200,216,.03) 1px,transparent 1px);background-size:44px 44px;pointer-events:none}
+.ueber-text{padding:clamp(72px,10vw,120px) clamp(32px,4vw,80px) clamp(72px,10vw,120px) 0;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2}
+.ueber-text .eyebrow{color:var(--accent)}
+.ueber-text .eyebrow::before{background:var(--accent)}
+.ueber-text .sec-title{color:var(--white);margin-bottom:28px}
+.ueber-p{font-size:.93rem;font-weight:300;line-height:1.92;color:var(--slate);margin-bottom:16px;letter-spacing:.01em}
+.ueber-p strong{color:var(--mist);font-weight:500}
+.ueber-sig{margin-top:48px;padding-top:36px;border-top:1px solid var(--line);display:flex;align-items:center;gap:20px}
+.sig-text{font-family:var(--serif);font-size:1rem;font-style:italic;color:var(--slate)}
+.sig-name{display:block;font-style:normal;font-family:var(--mono);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-top:5px}
+.ueber-panels{border-left:1px solid var(--line);display:grid;grid-template-rows:1fr 1fr 1fr;position:relative;z-index:2}
+.u-panel{padding:clamp(36px,4vw,52px) clamp(28px,4vw,60px);border-bottom:1px solid var(--line);transition:background .3s;display:flex;flex-direction:column;justify-content:center}
+.u-panel:last-child{border-bottom:none}
+.u-panel:hover{background:rgba(184,200,216,.04)}
+.u-panel-num{font-family:var(--serif);font-size:3.5rem;font-weight:500;color:var(--white);line-height:1;letter-spacing:-.02em}
+.u-panel-num sup{font-size:1.4rem;color:var(--accent);vertical-align:super}
+.u-panel-label{font-family:var(--mono);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--slate);margin-top:8px}
+.u-panel-desc{font-size:.82rem;color:var(--steel);font-weight:300;margin-top:6px;line-height:1.6}
+
+/* TEAM */
+.sec-team{background:var(--white);padding:clamp(72px,10vw,128px) var(--px)}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:64px}
+.team-card{position:relative;overflow:hidden;cursor:default}
+.team-img{height:360px;overflow:hidden;background:var(--navy2)}
+.team-img img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:brightness(.88) saturate(.85);transition:transform .6s var(--ease),filter .4s}
+.team-card:hover .team-img img{transform:scale(1.04);filter:brightness(.75) saturate(.7)}
+.team-info{background:var(--white);padding:24px 28px;border-top:2px solid var(--accent)}
+.team-name{font-family:var(--serif);font-size:1.2rem;font-weight:500;color:var(--navy);margin-bottom:3px}
+.team-role{font-family:var(--mono);font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--slate)}
+
+/* ZERTIFIKATE */
+.sec-zert{background:var(--cream2);padding:clamp(56px,8vw,96px) var(--px)}
+.zert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(13,27,42,.1);border:1px solid rgba(13,27,42,.1);margin-top:52px}
+.zert-item{background:var(--white);padding:36px 32px;display:flex;flex-direction:column;gap:12px}
+.zert-num{font-family:var(--mono);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent2)}
+.zert-name{font-family:var(--serif);font-size:1.1rem;font-weight:500;color:var(--navy)}
+.zert-desc{font-size:.82rem;color:var(--slate);font-weight:300;line-height:1.65}
+.zert-badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;background:var(--navy);color:var(--accent);margin-top:auto;align-self:flex-start}
+
+/* TESTIMONIALS */
+.sec-testi{background:var(--white);padding:clamp(72px,10vw,128px) var(--px)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(13,27,42,.08);border:1px solid rgba(13,27,42,.08);margin-top:64px}
+.t-card{background:var(--white);padding:48px 40px;position:relative;transition:background .3s}
+.t-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--navy);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+.t-card:hover{background:var(--cream)}
+.t-card:hover::before{transform:scaleX(1)}
+.t-stars{display:flex;gap:3px;margin-bottom:24px}
+.t-star{width:11px;height:11px;background:var(--accent);clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.t-quote{font-family:var(--serif);font-size:1.05rem;font-style:italic;line-height:1.78;color:var(--navy);margin-bottom:32px}
+.t-author{display:flex;align-items:center;gap:12px}
+.t-mark{width:40px;height:40px;flex-shrink:0;background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--white)}
+.t-name{font-family:var(--mono);font-size:.64rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--navy)}
+.t-loc{font-size:.78rem;color:var(--slate);margin-top:2px}
+
+/* KONTAKT */
+.sec-kontakt{background:var(--navy);padding:0 var(--px);display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
+.kontakt-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(184,200,216,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(184,200,216,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none}
+.k-left{padding:clamp(72px,10vw,120px) clamp(32px,4vw,80px) clamp(72px,10vw,120px) 0;border-right:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2}
+.k-left .eyebrow{color:var(--accent)}
+.k-left .eyebrow::before{background:var(--accent)}
+.k-left .sec-title{color:var(--white);margin-bottom:16px}
+.k-sub{font-size:.88rem;color:var(--slate);font-weight:300;line-height:1.82;margin-bottom:48px;max-width:360px}
+.k-items{display:flex;flex-direction:column}
+.k-item{display:flex;align-items:flex-start;gap:18px;padding:20px 0;border-bottom:1px solid var(--line);transition:padding-left .3s}
+.k-item:first-child{border-top:1px solid var(--line)}
+.k-item:hover{padding-left:10px}
+.k-icon{width:38px;height:38px;flex-shrink:0;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--accent)}
+.k-icon svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.k-label{font-family:var(--mono);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--slate);margin-bottom:3px}
+.k-val{font-size:.92rem;color:var(--mist);font-weight:300}
+.k-right{padding:clamp(72px,10vw,120px) 0 clamp(72px,10vw,120px) clamp(32px,4vw,80px);display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2}
+/* FORM */
+.f-title{font-family:var(--serif);font-size:1.4rem;font-weight:500;color:var(--white);margin-bottom:4px}
+.f-sub{font-size:.83rem;color:var(--steel);margin-bottom:28px;line-height:1.7}
+.form{display:flex;flex-direction:column;gap:14px}
+.f2col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fg{display:flex;flex-direction:column;gap:7px}
+.fg.full{grid-column:1/-1}
+.fg label{font-family:var(--mono);font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:var(--slate)}
+.fg input,.fg select,.fg textarea{
+  width:100%;background:rgba(255,255,255,.04);
+  border:1px solid var(--line);border-bottom:1px solid rgba(184,200,216,.2);
+  color:var(--mist);padding:12px 16px;
+  font-family:var(--sans);font-size:.9rem;font-weight:300;
+  outline:none;transition:all .3s;-webkit-appearance:none;appearance:none;border-radius:0;
+  resize:vertical;font-size:15px;
+}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--steel)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--accent);background:rgba(200,169,110,.04)}
+.fg select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A8FA8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-color:rgba(255,255,255,.04);padding-right:36px;cursor:pointer;color:var(--mist)}
+.fg select option{background:var(--navy2);color:var(--mist)}
+.f-privacy{font-size:.75rem;color:var(--steel);line-height:1.6;margin-top:2px}
+.f-privacy a{color:var(--slate);text-decoration:underline;text-decoration-color:rgba(122,143,168,.3);transition:color .2s}
+.f-privacy a:hover{color:var(--mist)}
+.f-legal-row{display:flex;align-items:flex-start;gap:10px}
+.f-legal-row input[type=checkbox]{margin-top:3px;accent-color:var(--accent);cursor:pointer;width:14px;height:14px;flex-shrink:0}
+.btn-submit{width:100%;padding:16px;background:var(--accent);color:var(--navy);border:none;cursor:pointer;font-family:var(--mono);font-size:.7rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:10px;min-height:52px}
+.btn-submit:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 10px 28px rgba(200,169,110,.2)}
+.f-success{display:none;padding:24px;background:rgba(200,169,110,.08);border:1px solid rgba(200,169,110,.25);text-align:center}
+.f-success.show{display:block}
+.f-success-icon{font-size:2rem;margin-bottom:10px}
+.f-success p{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--mist)}
+
+/* FOOTER */
+footer{background:#080E14;padding:clamp(56px,8vw,88px) var(--px) 0;border-top:1px solid var(--line2)}
+.foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:clamp(32px,5vw,64px);padding-bottom:56px;border-bottom:1px solid var(--line2);margin-bottom:36px}
+.foot-logo{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--cream)}
+.foot-logo span{color:var(--accent)}
+.foot-desc{font-size:.83rem;font-weight:300;color:var(--steel);line-height:1.75;margin-top:16px;max-width:260px}
+.foot-rule{width:28px;height:1px;background:var(--accent);margin:20px 0}
+.foot-contact a{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;color:var(--slate);display:block;margin-bottom:6px;transition:color .25s}
+.foot-contact a:hover{color:var(--accent)}
+.foot-col-title{font-family:var(--mono);font-size:.58rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:24px}
+.foot-links{list-style:none;display:flex;flex-direction:column;gap:12px}
+.foot-links a{color:var(--steel);font-size:.83rem;font-weight:300;transition:color .25s}
+.foot-links a:hover{color:var(--mist)}
+.foot-bot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding-bottom:32px}
+.foot-copy{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;color:var(--steel)}
+.foot-copy strong{color:var(--accent);font-weight:500}
+.foot-legal{display:flex;gap:24px}
+.foot-legal a{font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--steel);transition:color .25s}
+.foot-legal a:hover{color:var(--mist)}
+
+/* MODAL — Impressum/Datenschutz */
+.modal-bg{position:fixed;inset:0;z-index:9900;background:rgba(8,14,20,.92);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;transition:opacity .4s var(--ease),visibility .4s}
+.modal-bg.open{opacity:1;visibility:visible}
+.modal-box{background:var(--cream);max-width:780px;width:100%;max-height:88vh;overflow-y:auto;position:relative}
+.modal-header{position:sticky;top:0;background:var(--cream);padding:28px 40px 20px;border-bottom:1px solid rgba(13,27,42,.1);display:flex;justify-content:space-between;align-items:flex-start;z-index:5}
+.modal-title{font-family:var(--serif);font-size:1.6rem;font-weight:500;color:var(--navy)}
+.modal-close{background:none;border:none;cursor:pointer;width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:var(--slate);font-size:1.4rem;transition:color .2s;flex-shrink:0;margin-top:2px}
+.modal-close:hover{color:var(--navy)}
+.modal-body{padding:32px 40px 40px}
+.modal-body h3{font-family:var(--serif);font-size:1.15rem;font-weight:500;color:var(--navy);margin:28px 0 10px}
+.modal-body h3:first-child{margin-top:0}
+.modal-body p{font-size:.88rem;color:var(--steel);line-height:1.85;margin-bottom:12px;font-weight:300}
+.modal-body a{color:var(--mid);text-decoration:underline}
+.modal-body ul{padding-left:20px;margin-bottom:12px}
+.modal-body ul li{font-size:.88rem;color:var(--steel);line-height:1.8;font-weight:300}
+.modal-body .m-block{background:rgba(13,27,42,.04);border-left:2px solid var(--accent);padding:16px 20px;margin:16px 0;font-size:.85rem;color:var(--navy);font-weight:300;line-height:1.8}
+
+/* TOAST */
+.toast{position:fixed;bottom:32px;right:32px;background:var(--navy);color:var(--mist);padding:14px 22px;font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;border-left:3px solid var(--accent);z-index:9999;transform:translateX(calc(100% + 48px));transition:transform .4s var(--ease);max-width:300px}
+.toast.show{transform:translateX(0)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.on{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .srv-grid{grid-template-columns:repeat(2,1fr)}
+  .zert-grid{grid-template-columns:repeat(2,1fr)}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:820px){
+  .hero{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .hero-left{padding:120px var(--px) 80px}
+  .sec-ueber,.sec-kontakt{grid-template-columns:1fr}
+  .ueber-panels{border-left:none;border-top:1px solid var(--line)}
+  .k-left{border-right:none;border-bottom:1px solid var(--line);padding-right:0}
+  .k-right{padding-left:0}
+  .ref-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .ref-item:nth-child(n){grid-column:auto;grid-row:auto;height:220px}
+  .foot-top{grid-template-columns:1fr 1fr;gap:36px}
+}
+@media(max-width:640px){
+  .nav-links li:not(:last-child){display:none}
+  .ham{display:flex}
+  .srv-grid,.team-grid,.testi-grid,.zert-grid{grid-template-columns:1fr}
+  .f2col{grid-template-columns:1fr}
+  .ref-grid{grid-template-columns:1fr}
+  .foot-top{grid-template-columns:1fr}
+  .foot-bot{flex-direction:column;gap:12px;padding-bottom:28px}
+  .foot-legal{flex-wrap:wrap;gap:14px}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-ring"></div>
+<div class="toast" id="toast"></div>
+
+<!-- MODALS -->
+<div class="modal-bg" id="modal-impressum" onclick="closeModal('impressum')">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <div class="modal-title">Impressum</div>
+      <button class="modal-close" onclick="closeModal('impressum')">&#10005;</button>
+    </div>
+    <div class="modal-body">
+      <h3>Angaben gem&auml;&szlig; &sect; 5 TMG</h3>
+      <div class="m-block">
+        <strong>Krause &amp; S&ouml;hne GmbH</strong><br>
+        Baumeistergasse 12<br>
+        10115 Berlin<br><br>
+        Handelsregister: HRB 123456 B<br>
+        Registergericht: Amtsgericht Berlin-Charlottenburg
+      </div>
+      <h3>Vertreten durch</h3>
+      <p>Gesch&auml;ftsf&uuml;hrer: Thomas Krause, Martin Krause</p>
+      <h3>Kontakt</h3>
+      <p>
+        Telefon: +49 (30) 123 456-78<br>
+        Telefax: +49 (30) 123 456-79<br>
+        E-Mail: info@krause-soehne.de
+      </p>
+      <h3>Umsatzsteuer-ID</h3>
+      <p>Umsatzsteuer-Identifikationsnummer gem&auml;&szlig; &sect; 27a Umsatzsteuergesetz: DE 123 456 789</p>
+      <h3>Berufsbezeichnung und berufsrechtliche Regelungen</h3>
+      <p>Berufsbezeichnung: Meisterbetrieb des Handwerks<br>
+      Zust&auml;ndige Kammer: Handwerkskammer Berlin<br>
+      Handwerksrolle: Eintrag Nr. HWK-B-7842</p>
+      <h3>Angaben zur Berufshaftpflichtversicherung</h3>
+      <p>Name und Sitz des Versicherers: Allianz Versicherungs-AG, K&ouml;niginstra&szlig;e 28, 80802 M&uuml;nchen<br>
+      Geltungsraum der Versicherung: Deutschland, EU</p>
+      <h3>Verantwortlich f&uuml;r den Inhalt nach &sect; 55 Abs. 2 RStV</h3>
+      <p>Thomas Krause<br>Baumeistergasse 12<br>10115 Berlin</p>
+      <h3>Streitschlichtung</h3>
+      <p>Die Europ&auml;ische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank">https://ec.europa.eu/consumers/odr/</a>. Unsere E-Mail-Adresse finden Sie oben im Impressum.</p>
+      <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+      <h3>Haftung f&uuml;r Inhalte</h3>
+      <p>Als Diensteanbieter sind wir gem&auml;&szlig; &sect; 7 Abs.1 TMG f&uuml;r eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach &sect;&sect; 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht unter der Verpflichtung, &uuml;bermittelte oder gespeicherte fremde Informationen zu &uuml;berwachen oder nach Umst&auml;nden zu forschen, die auf eine rechtswidrige T&auml;tigkeit hinweisen.</p>
+      <h3>Haftung f&uuml;r Links</h3>
+      <p>Unser Angebot enth&auml;lt Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb k&ouml;nnen wir f&uuml;r diese fremden Inhalte auch keine Gew&auml;hr &uuml;bernehmen. F&uuml;r die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+      <h3>Urheberrecht</h3>
+      <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielf&auml;ltigung, Bearbeitung, Verbreitung und jede Art der Verwertung au&szlig;erhalb der Grenzen des Urheberrechtes bed&uuml;rfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-bg" id="modal-datenschutz" onclick="closeModal('datenschutz')">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <div class="modal-title">Datenschutzerkl&auml;rung</div>
+      <button class="modal-close" onclick="closeModal('datenschutz')">&#10005;</button>
+    </div>
+    <div class="modal-body">
+      <h3>1. Datenschutz auf einen Blick</h3>
+      <p><strong>Allgemeine Hinweise:</strong> Die folgenden Hinweise geben einen einfachen &Uuml;berblick dar&uuml;ber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen.</p>
+      <h3>2. Verantwortliche Stelle</h3>
+      <div class="m-block">
+        Krause &amp; S&ouml;hne GmbH<br>
+        Baumeistergasse 12, 10115 Berlin<br>
+        Tel: +49 (30) 123 456-78<br>
+        E-Mail: datenschutz@krause-soehne.de
+      </div>
+      <h3>3. Datenerfassung auf dieser Website</h3>
+      <p><strong>Kontaktformular:</strong> Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und f&uuml;r den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.</p>
+      <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung) sowie Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse).</p>
+      <h3>4. Hosting</h3>
+      <p>Diese Website wird bei Netlify, Inc., 512 2nd Street, Suite 200, San Francisco, CA 94107, USA gehostet. Netlify verarbeitet Daten auf Grundlage eines abgeschlossenen Auftragsverarbeitungsvertrages (DPA). Weitere Informationen: <a href="https://www.netlify.com/privacy/" target="_blank">Netlify Privacy Policy</a>.</p>
+      <h3>5. Ihre Rechte</h3>
+      <ul>
+        <li>Recht auf Auskunft (&sect; 15 DSGVO)</li>
+        <li>Recht auf Berichtigung (&sect; 16 DSGVO)</li>
+        <li>Recht auf L&ouml;schung (&sect; 17 DSGVO)</li>
+        <li>Recht auf Einschr&auml;nkung der Verarbeitung (&sect; 18 DSGVO)</li>
+        <li>Recht auf Daten&uuml;bertragbarkeit (&sect; 20 DSGVO)</li>
+        <li>Widerspruchsrecht (&sect; 21 DSGVO)</li>
+      </ul>
+      <p>Anfragen richten Sie bitte an: datenschutz@krause-soehne.de oder den oben genannten Postweg.</p>
+      <h3>6. Beschwerderecht</h3>
+      <p>Sie haben das Recht, sich bei der zust&auml;ndigen Aufsichtsbeh&ouml;rde zu beschweren. In Berlin ist dies der Berliner Beauftragte f&uuml;r Datenschutz und Informationsfreiheit, Friedrichstr. 219, 10969 Berlin.</p>
+      <h3>7. SSL-Verschl&uuml;sselung</h3>
+      <p>Diese Seite nutzt aus Sicherheitsgr&uuml;nden und zum Schutz der &Uuml;bertragung vertraulicher Inhalte eine SSL- bzw. TLS-Verschl&uuml;sselung. Eine verschl&uuml;sselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von &ldquo;http://&rdquo; auf &ldquo;https://&rdquo; wechselt.</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-bg" id="modal-agb" onclick="closeModal('agb')">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <div class="modal-title">Allgemeine Gesch&auml;ftsbedingungen</div>
+      <button class="modal-close" onclick="closeModal('agb')">&#10005;</button>
+    </div>
+    <div class="modal-body">
+      <h3>&sect; 1 Geltungsbereich</h3>
+      <p>Diese Allgemeinen Gesch&auml;ftsbedingungen gelten f&uuml;r alle Leistungsvertr&auml;ge zwischen der Krause &amp; S&ouml;hne GmbH (nachfolgend &ldquo;Auftragnehmer&rdquo;) und dem Auftraggeber.</p>
+      <h3>&sect; 2 Angebot und Vertragsabschluss</h3>
+      <p>Angebote des Auftragnehmers sind freibleibend und unverbindlich, sofern sie nicht ausdr&uuml;cklich als verbindlich bezeichnet werden. Ein Vertrag kommt erst durch schriftliche Auftragserteilung und deren Best&auml;tigung durch den Auftragnehmer zustande.</p>
+      <h3>&sect; 3 Leistungsumfang</h3>
+      <p>Der Leistungsumfang ergibt sich aus dem schriftlichen Angebot bzw. dem geschlossenen Werkvertrag. &Auml;nderungen und Erg&auml;nzungen bed&uuml;rfen der Schriftform.</p>
+      <h3>&sect; 4 Vergütung und Zahlungsbedingungen</h3>
+      <p>Die Verg&uuml;tung ist nach Rechnungsstellung innerhalb von 14 Tagen ohne Abzug f&auml;llig, sofern nicht anders vereinbart. Bei Zahlungsverzug werden Verzugszinsen in H&ouml;he von 9 Prozentpunkten &uuml;ber dem Basiszinssatz berechnet.</p>
+      <h3>&sect; 5 Gew&auml;hrleistung</h3>
+      <p>Es gelten die gesetzlichen Gew&auml;hrleistungsvorschriften. Die Gew&auml;hrleistungsfrist betr&auml;gt f&uuml;r Bauwerke 5 Jahre gem&auml;&szlig; &sect; 634a BGB, f&uuml;r sonstige Leistungen 2 Jahre.</p>
+      <h3>&sect; 6 Haftung</h3>
+      <p>Der Auftragnehmer haftet unbeschr&auml;nkt f&uuml;r Sch&auml;den aus der Verletzung des Lebens, des K&ouml;rpers oder der Gesundheit sowie f&uuml;r Sch&auml;den, die auf Vorsatz oder grober Fahrl&auml;ssigkeit beruhen.</p>
+      <h3>&sect; 7 Erf&uuml;llungsort und Gerichtsstand</h3>
+      <p>Erf&uuml;llungsort und Gerichtsstand ist Berlin, sofern der Auftraggeber Kaufmann, juristische Person des &ouml;ffentlichen Rechts oder &ouml;ffentlich-rechtliches Sonderverm&ouml;gen ist.</p>
+      <h3>&sect; 8 Salvatorische Klausel</h3>
+      <p>Sollten einzelne Bestimmungen dieser AGB ganz oder teilweise unwirksam sein oder werden, so ber&uuml;hrt dies die G&uuml;ltigkeit der &uuml;brigen Bestimmungen nicht.</p>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#home" class="brand">
+    <span class="brand-main">Krause <span>&amp;</span> S&ouml;hne</span>
+    <span class="brand-sub">Baumeister &middot; Berlin</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#referenzen">Referenzen</a></li>
+    <li><a href="#unternehmen">Unternehmen</a></li>
+    <li><a href="#kontakt" class="nav-cta">Anfrage stellen</a></li>
+  </ul>
+  <button class="ham" id="ham" aria-label="Men&uuml;"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob-nav" id="mobNav">
+  <a href="#leistungen" onclick="closeMob()">Leistungen</a>
+  <a href="#referenzen" onclick="closeMob()">Referenzen</a>
+  <a href="#unternehmen" onclick="closeMob()">Unternehmen</a>
+  <a href="#kontakt" class="mob-cta" onclick="closeMob()">Anfrage stellen</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-img-overlay">
+    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1800&q=80&auto=format&fit=crop" alt="Baustelle Krause &amp; S&ouml;hne"/>
+  </div>
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="hero-ey-line"></div>
+      <span class="hero-ey-txt">Meisterbetrieb &middot; Gegr&uuml;ndet 1978</span>
+    </div>
+    <h1>Bauen,<br>das <em>Bestand</em><br>hat.</h1>
+    <p class="hero-desc">Wir planen, bauen und sanieren mit handwerklicher Pr&auml;zision und unternehmerischer Verantwortung. Vertrauen beginnt mit Ehrlichkeit &mdash; das ist unser Grundsatz seit 45 Jahren.</p>
+    <div class="hero-actions">
+      <a href="#kontakt" class="btn-primary">Jetzt anfragen <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="#referenzen" class="btn-ghost-light">Referenzen ansehen</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stats">
+      <div class="h-stat"><div class="h-stat-num">45<sup>+</sup></div><div class="h-stat-label">Jahre Erfahrung</div></div>
+      <div class="h-stat"><div class="h-stat-num">1.200</div><div class="h-stat-label">Abgeschlossene Projekte</div></div>
+      <div class="h-stat"><div class="h-stat-num">98<sup>%</sup></div><div class="h-stat-label">Weiterempfehlung</div></div>
+      <div class="h-stat"><div class="h-stat-num">34</div><div class="h-stat-label">Festangestellte Fachkr&auml;fte</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trustbar">
+  <div class="tb-track">
+    <div class="tb-item"><div class="tb-dot"></div><span>Handwerkskammer Berlin</span></div>
+    <div class="tb-item"><div class="tb-dot"></div><span>ISO 9001:2015 Zertifiziert</span></div>
+    <div class="tb-item"><div class="tb-dot"></div><span>Meisterbetrieb seit 1978</span></div>
+    <div class="tb-item"><div class="tb-dot"></div><span>T&Uuml;V Rheinland gepr&uuml;ft</span></div>
+    <div class="tb-item"><div class="tb-dot"></div><span>Innung Fachbetrieb</span></div>
+    <div class="tb-item"><div class="tb-dot"></div><span>DGNB Nachhaltigkeitspartner</span></div>
+    <div class="tb-item"><div class="tb-dot"></div><span>Klimaneutral seit 2021</span></div>
+    <div class="tb-item"><div class="tb-dot"></div><span>Handwerkskammer Berlin</span></div>
+    <div class="tb-item"><div class="tb-dot"></div><span>ISO 9001:2015 Zertifiziert</span></div>
+    <div class="tb-item"><div class="tb-dot"></div><span>Meisterbetrieb seit 1978</span></div>
+    <div class="tb-item"><div class="tb-dot"></div><span>T&Uuml;V Rheinland gepr&uuml;ft</span></div>
+    <div class="tb-item"><div class="tb-dot"></div><span>Innung Fachbetrieb</span></div>
+    <div class="tb-item"><div class="tb-dot"></div><span>DGNB Nachhaltigkeitspartner</span></div>
+    <div class="tb-item"><div class="tb-dot"></div><span>Klimaneutral seit 2021</span></div>
+  </div>
+</div>
+
+<!-- LEISTUNGEN -->
+<section class="sec-leistungen reveal" id="leistungen">
+  <div class="sec-head">
+    <div><div class="eyebrow">Leistungen</div><h2 class="sec-title">Was wir <em>leisten</em></h2></div>
+    <a href="#kontakt" class="btn-ghost-light" style="color:var(--steel)">Alle Leistungen anfragen &rarr;</a>
+  </div>
+  <div class="srv-grid">
+    <a href="#kontakt" class="srv-card">
+      <span class="srv-n">01 / 06</span>
+      <div class="srv-ico"><svg viewBox="0 0 48 48" fill="none" stroke="var(--slate)" stroke-width="1.5"><rect x="4" y="28" width="40" height="16" rx="1"/><path d="M10 28V20L24 8l14 12v8"/><path d="M18 44V34h12v10"/></svg></div>
+      <div class="srv-name">Hoch- &amp; Umbau</div>
+      <p class="srv-p">Vom Rohbau bis zur schl&uuml;sselfertigen &Uuml;bergabe. Wohn- und Gewerbebauprojekte mit h&ouml;chster bautechnischer Sorgfalt.</p>
+      <div class="srv-arr">Anfragen &rarr;</div>
+    </a>
+    <a href="#kontakt" class="srv-card">
+      <span class="srv-n">02 / 06</span>
+      <div class="srv-ico"><svg viewBox="0 0 48 48" fill="none" stroke="var(--slate)" stroke-width="1.5"><rect x="8" y="6" width="32" height="36" rx="1"/><rect x="14" y="12" width="9" height="14" rx="0.5"/><rect x="25" y="12" width="9" height="14" rx="0.5"/><line x1="14" y1="32" x2="34" y2="32"/><line x1="14" y1="36" x2="34" y2="36"/></svg></div>
+      <div class="srv-name">Fensterbau &amp; Verglasung</div>
+      <p class="srv-p">Energieeffiziente Fenster- und T&uuml;rl&ouml;sungen. Einbau, Abdichtung und Langzeitgarantie &mdash; aus einer Hand.</p>
+      <div class="srv-arr">Anfragen &rarr;</div>
+    </a>
+    <a href="#kontakt" class="srv-card">
+      <span class="srv-n">03 / 06</span>
+      <div class="srv-ico"><svg viewBox="0 0 48 48" fill="none" stroke="var(--slate)" stroke-width="1.5"><circle cx="24" cy="24" r="7"/><line x1="24" y1="4" x2="24" y2="10"/><line x1="24" y1="38" x2="24" y2="44"/><line x1="4" y1="24" x2="10" y2="24"/><line x1="38" y1="24" x2="44" y2="24"/><line x1="9.4" y1="9.4" x2="13.5" y2="13.5"/><line x1="34.5" y1="34.5" x2="38.6" y2="38.6"/><line x1="38.6" y1="9.4" x2="34.5" y2="13.5"/><line x1="13.5" y1="34.5" x2="9.4" y2="38.6"/></svg></div>
+      <div class="srv-name">Elektroinstallation</div>
+      <p class="srv-p">Normgerechte Elektrol&ouml;sungen f&uuml;r Privat und Gewerbe. Smart-Home-Systeme, Photovoltaik und Ladeinfrastruktur.</p>
+      <div class="srv-arr">Anfragen &rarr;</div>
+    </a>
+    <a href="#kontakt" class="srv-card">
+      <span class="srv-n">04 / 06</span>
+      <div class="srv-ico"><svg viewBox="0 0 48 48" fill="none" stroke="var(--slate)" stroke-width="1.5"><path d="M10 38V22l14-14 14 14v16"/><path d="M20 38v-8h8v8"/><circle cx="24" cy="16" r="2"/><path d="M10 22H6M42 22h-4"/></svg></div>
+      <div class="srv-name">Sanit&auml;r &amp; Heizung</div>
+      <p class="srv-p">Bad- und Sanierungskonzepte, moderne W&auml;rmepumpen und Heizungstechnik. W&auml;rme, die sich rechnet.</p>
+      <div class="srv-arr">Anfragen &rarr;</div>
+    </a>
+    <a href="#kontakt" class="srv-card">
+      <span class="srv-n">05 / 06</span>
+      <div class="srv-ico"><svg viewBox="0 0 48 48" fill="none" stroke="var(--slate)" stroke-width="1.5"><rect x="6" y="8" width="36" height="32" rx="1"/><line x1="6" y1="18" x2="42" y2="18"/><line x1="18" y1="18" x2="18" y2="40"/><path d="M26 26h8M26 32h6"/></svg></div>
+      <div class="srv-name">Innenausbau &amp; Schreinerei</div>
+      <p class="srv-p">Ma&szlig;gefertigte Einbauten, Trockenbau und Verkleidungen. Handwerk auf Ma&szlig; &mdash; sichtbar und sp&uuml;rbar.</p>
+      <div class="srv-arr">Anfragen &rarr;</div>
+    </a>
+    <a href="#kontakt" class="srv-card">
+      <span class="srv-n">06 / 06</span>
+      <div class="srv-ico"><svg viewBox="0 0 48 48" fill="none" stroke="var(--slate)" stroke-width="1.5"><path d="M8 36h32M12 36V20l6-6 6 6 6-6 6 6v16"/><path d="M20 36v-8h8v8"/></svg></div>
+      <div class="srv-name">Maler &amp; Putzarbeiten</div>
+      <p class="srv-p">Innen- und Au&szlig;enanstriche, W&auml;rmed&auml;mmverbundsysteme und Spachtelarbeiten mit langlebigen Materialien.</p>
+      <div class="srv-arr">Anfragen &rarr;</div>
+    </a>
+  </div>
+</section>
+
+<!-- REFERENZEN mit echten Bildern -->
+<section class="sec-referenzen reveal" id="referenzen">
+  <div class="sec-head">
+    <div><div class="eyebrow">Referenzen</div><h2 class="sec-title">Ausgef&uuml;hrte <em>Projekte</em></h2></div>
+  </div>
+  <div class="ref-grid">
+    <div class="ref-item">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80&auto=format&fit=crop" alt="Einfamilienhaus Neubau Berlin-Zehlendorf" loading="lazy"/>
+      <div class="ref-ov"></div>
+      <div class="ref-body"><div class="ref-tag">Neubau &middot; 2023</div><div class="ref-name">Einfamilienhaus Zehlendorf</div><div class="ref-loc">Berlin-Zehlendorf &middot; 280 m&sup2;</div></div>
+    </div>
+    <div class="ref-item">
+      <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=700&q=75&auto=format&fit=crop" alt="Gewerbekomplex" loading="lazy"/>
+      <div class="ref-ov"></div>
+      <div class="ref-body"><div class="ref-tag">Gewerbe &middot; 2022</div><div class="ref-name">B&uuml;rokomplex Mitte</div><div class="ref-loc">Berlin-Mitte &middot; 1.400 m&sup2;</div></div>
+    </div>
+    <div class="ref-item">
+      <img src="https://images.unsplash.com/photo-1560184897-ae75f418493e?w=700&q=75&auto=format&fit=crop" alt="Sanierung Altbau" loading="lazy"/>
+      <div class="ref-ov"></div>
+      <div class="ref-body"><div class="ref-tag">Sanierung &middot; 2023</div><div class="ref-name">Gr&uuml;nderzeithaus Prenzlberg</div><div class="ref-loc">Prenzlauer Berg &middot; 620 m&sup2;</div></div>
+    </div>
+    <div class="ref-item">
+      <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=700&q=75&auto=format&fit=crop" alt="Mehrfamilienhaus" loading="lazy"/>
+      <div class="ref-ov"></div>
+      <div class="ref-body"><div class="ref-tag">Neubau &middot; 2021</div><div class="ref-name">Mehrfamilienhaus Pankow</div><div class="ref-loc">Berlin-Pankow &middot; 980 m&sup2;</div></div>
+    </div>
+    <div class="ref-item">
+      <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=700&q=75&auto=format&fit=crop" alt="Innenausbau" loading="lazy"/>
+      <div class="ref-ov"></div>
+      <div class="ref-body"><div class="ref-tag">Innenausbau &middot; 2024</div><div class="ref-name">Penthouse Charlottenburg</div><div class="ref-loc">Berlin-Charlottenburg &middot; 210 m&sup2;</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ÜBER UNS -->
+<section class="sec-ueber reveal" id="unternehmen">
+  <div class="ueber-bg"></div>
+  <div class="ueber-text">
+    <div class="eyebrow">Unternehmen</div>
+    <h2 class="sec-title">Handwerk mit <em>Haltung</em></h2>
+    <p class="ueber-p">Seit 1978 bauen wir nicht nur H&auml;user &mdash; wir bauen <strong>Vertrauen</strong>. Was als Zwei-Mann-Betrieb in einer Berliner Garage begann, ist heute eines der anerkanntesten Handwerksunternehmen der Hauptstadt.</p>
+    <p class="ueber-p">Drei Generationen Familie Krause stehen f&uuml;r dasselbe: Qualit&auml;t, die man sieht. <strong>Ehrlichkeit, die man sp&uuml;rt.</strong> Und Verantwortung, die weit &uuml;ber den Bau hinausgeht &mdash; gegen&uuml;ber Kunden, Mitarbeitern und der Umwelt.</p>
+    <p class="ueber-p">Kein Projekt ist zu gro&szlig;, keines zu komplex. Wir setzen auf festangestellte Fachkr&auml;fte, keine Subunternehmer &mdash; damit Qualit&auml;t und Verantwortung immer in einer Hand bleiben.</p>
+    <div class="ueber-sig">
+      <div class="sig-text">Qualit&auml;t, die man sp&uuml;rt.<span class="sig-name">Thomas Krause &middot; Gesch&auml;ftsf&uuml;hrer</span></div>
+    </div>
+  </div>
+  <div class="ueber-panels">
+    <div class="u-panel"><div class="u-panel-num">45<sup>+</sup></div><div class="u-panel-label">Jahre Familienunternehmen</div><div class="u-panel-desc">Drei Generationen, eine Vision: sauberes, dauerhaftes Handwerk.</div></div>
+    <div class="u-panel"><div class="u-panel-num">34</div><div class="u-panel-label">Festangestellte Fachkr&auml;fte</div><div class="u-panel-desc">Keine Fremdvergabe &mdash; volle Verantwortung liegt bei uns.</div></div>
+    <div class="u-panel"><div class="u-panel-num">ISO</div><div class="u-panel-label">9001:2015 Zertifiziert</div><div class="u-panel-desc">Qualit&auml;tsmanagement nach internationalem Standard, gepr&uuml;ft durch T&Uuml;V Rheinland.</div></div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="sec-team reveal" id="team">
+  <div class="sec-head">
+    <div><div class="eyebrow">Das Team</div><h2 class="sec-title">Menschen hinter dem <em>Handwerk</em></h2></div>
+  </div>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-img"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=75&auto=format&fit=crop" alt="Thomas Krause" loading="lazy"/></div>
+      <div class="team-info"><div class="team-name">Thomas Krause</div><div class="team-role">Gesch&auml;ftsf&uuml;hrer &middot; Baumeister</div></div>
+    </div>
+    <div class="team-card">
+      <div class="team-img"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=75&auto=format&fit=crop" alt="Martin Krause" loading="lazy"/></div>
+      <div class="team-info"><div class="team-name">Martin Krause</div><div class="team-role">Gesch&auml;ftsf&uuml;hrer &middot; Elektrotechnik</div></div>
+    </div>
+    <div class="team-card">
+      <div class="team-img"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=75&auto=format&fit=crop" alt="Sandra Wei&szlig;" loading="lazy"/></div>
+      <div class="team-info"><div class="team-name">Sandra Wei&szlig;</div><div class="team-role">Projektleiterin &middot; Innenausbau</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ZERTIFIKATE -->
+<section class="sec-zert reveal">
+  <div class="sec-head">
+    <div><div class="eyebrow">Qualit&auml;tsnachweis</div><h2 class="sec-title">Zertifikate &amp; <em>Auszeichnungen</em></h2></div>
+  </div>
+  <div class="zert-grid">
+    <div class="zert-item">
+      <div class="zert-num">01</div>
+      <div class="zert-name">ISO 9001:2015</div>
+      <div class="zert-desc">Zertifiziertes Qualit&auml;tsmanagementsystem nach internationalem Standard. Gepr&uuml;ft und best&auml;tigt durch T&Uuml;V Rheinland.</div>
+      <div class="zert-badge">&#10003; G&uuml;ltig bis 2026</div>
+    </div>
+    <div class="zert-item">
+      <div class="zert-num">02</div>
+      <div class="zert-name">Meisterbetrieb HWK</div>
+      <div class="zert-desc">Eingetragener Meisterbetrieb der Handwerkskammer Berlin. Meisterbrief und Handwerksrolle seit Gr&uuml;ndung 1978.</div>
+      <div class="zert-badge">&#10003; Seit 1978</div>
+    </div>
+    <div class="zert-item">
+      <div class="zert-num">03</div>
+      <div class="zert-name">DGNB Nachhaltigkeitspartner</div>
+      <div class="zert-desc">Zertifizierter Partner der Deutschen Gesellschaft f&uuml;r Nachhaltiges Bauen. Klimaneutraler Betrieb seit 2021.</div>
+      <div class="zert-badge">&#10003; Klimaneutral 2021</div>
+    </div>
+    <div class="zert-item">
+      <div class="zert-num">04</div>
+      <div class="zert-name">Innung Fachbetrieb</div>
+      <div class="zert-desc">Vollmitglied der Berliner Bau-Innung. Regelm&auml;&szlig;ige Weiterbildung und &Uuml;berpr&uuml;fung aller Meister und Gesellen.</div>
+      <div class="zert-badge">&#10003; Aktives Mitglied</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="sec-testi reveal">
+  <div class="sec-head">
+    <div><div class="eyebrow">Kundenstimmen</div><h2 class="sec-title">Was unsere <em>Auftraggeber sagen</em></h2></div>
+  </div>
+  <div class="testi-grid">
+    <div class="t-card">
+      <div class="t-stars"><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div></div>
+      <p class="t-quote">&ldquo;Termintreue, saubere Arbeit und ein Team, das mitdenkt. Krause &amp; S&ouml;hne haben unser Wohnhaus in sechs Monaten schl&uuml;sselfertig &uuml;bergeben &mdash; ohne eine einzige Nachforderung.&rdquo;</p>
+      <div class="t-author"><div class="t-mark">HM</div><div><div class="t-name">Dr. Hans Meier</div><div class="t-loc">Bauherr, Berlin-Zehlendorf</div></div></div>
+    </div>
+    <div class="t-card">
+      <div class="t-stars"><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div></div>
+      <p class="t-quote">&ldquo;Als Architektin arbeite ich regelm&auml;&szlig;ig mit Krause &amp; S&ouml;hne. Die handwerkliche Qualit&auml;t ist &uuml;berragend &mdash; auch bei komplexen Details wird sauber und pr&auml;zise gearbeitet.&rdquo;</p>
+      <div class="t-author"><div class="t-mark">JB</div><div><div class="t-name">Julia Berg</div><div class="t-loc">Architektin BDA, Berlin</div></div></div>
+    </div>
+    <div class="t-card">
+      <div class="t-stars"><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div><div class="t-star"></div></div>
+      <p class="t-quote">&ldquo;Unser Gewerbeobjekt wurde p&uuml;nktlich, im Budget und in makelloser Qualit&auml;t &uuml;bergeben. Die Kommunikation war jederzeit transparent und verl&auml;sslich.&rdquo;</p>
+      <div class="t-author"><div class="t-mark">RG</div><div><div class="t-name">Robert Gro&szlig;</div><div class="t-loc">Gesch&auml;ftsf&uuml;hrer, Groß Immobilien GmbH</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT mit Netlify Form -->
+<section class="sec-kontakt reveal" id="kontakt">
+  <div class="kontakt-bg"></div>
+  <div class="k-left">
+    <div class="eyebrow">Kontakt</div>
+    <h2 class="sec-title">Projekt<br><em>anfragen</em></h2>
+    <p class="k-sub">Teilen Sie uns Ihr Vorhaben mit &mdash; wir melden uns innerhalb von 24 Stunden mit einer ersten Einsch&auml;tzung. Kostenloser Ersttermin vor Ort auf Anfrage.</p>
+    <div class="k-items">
+      <a href="tel:+493012345678" class="k-item">
+        <div class="k-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 15.92z"/></svg></div>
+        <div><div class="k-label">Telefon</div><div class="k-val">+49 (30) 123 456-78</div></div>
+      </a>
+      <a href="mailto:info@krause-soehne.de" class="k-item">
+        <div class="k-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div><div class="k-label">E-Mail</div><div class="k-val">info@krause-soehne.de</div></div>
+      </a>
+      <div class="k-item">
+        <div class="k-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div><div class="k-label">Adresse</div><div class="k-val">Baumeistergasse 12, 10115 Berlin</div></div>
+      </div>
+      <div class="k-item">
+        <div class="k-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <div><div class="k-label">B&uuml;rozeiten</div><div class="k-val">Mo&ndash;Fr: 07:30&ndash;17:00 Uhr</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="k-right">
+    <div class="f-title">Unverbindlich anfragen</div>
+    <div class="f-sub">Alle Felder mit * sind Pflichtfelder. Wir antworten innerhalb von 24 Stunden.</div>
+
+    <form name="anfrage" method="POST" action="#danke" netlify netlify-honeypot="bot-feld" id="anfrage-form">
+      <p style="display:none"><label>Nicht ausf&uuml;llen: <input name="bot-feld"/></label></p>
+      <div class="form">
+        <div class="f2col">
+          <div class="fg"><label for="k-vorname">Vorname *</label><input id="k-vorname" type="text" name="vorname" placeholder="Max" required autocomplete="given-name"/></div>
+          <div class="fg"><label for="k-nachname">Nachname *</label><input id="k-nachname" type="text" name="nachname" placeholder="Mustermann" required autocomplete="family-name"/></div>
+        </div>
+        <div class="fg full"><label for="k-email">E-Mail *</label><input id="k-email" type="email" name="email" placeholder="max@beispiel.de" required autocomplete="email"/></div>
+        <div class="fg full"><label for="k-tel">Telefon</label><input id="k-tel" type="tel" name="telefon" placeholder="+49 30 &hellip;" autocomplete="tel"/></div>
+        <div class="fg full"><label for="k-leistung">Gew&uuml;nschte Leistung *</label>
+          <select id="k-leistung" name="leistung" required>
+            <option value="" disabled selected>Bitte ausw&auml;hlen &hellip;</option>
+            <option>Hoch- &amp; Umbau</option>
+            <option>Fensterbau &amp; Verglasung</option>
+            <option>Elektroinstallation</option>
+            <option>Sanit&auml;r &amp; Heizung</option>
+            <option>Innenausbau &amp; Schreinerei</option>
+            <option>Maler &amp; Putzarbeiten</option>
+            <option>Sonstiges</option>
+          </select>
+        </div>
+        <div class="fg full"><label for="k-msg">Projektbeschreibung *</label><textarea id="k-msg" name="nachricht" rows="4" placeholder="Kurze Beschreibung Ihres Vorhabens, Lage, Umfang &hellip;" required></textarea></div>
+        <div class="f-legal-row">
+          <input type="checkbox" id="k-dsgvo" name="datenschutz" value="akzeptiert" required/>
+          <label for="k-dsgvo" class="f-privacy">Ich habe die <a href="#" onclick="openModal('datenschutz');return false">Datenschutzerkl&auml;rung</a> gelesen und bin mit der Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage einverstanden. *</label>
+        </div>
+        <button type="submit" class="btn-submit">
+          Anfrage absenden
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="f-success" id="f-success">
+          <div class="f-success-icon">&#10003;</div>
+          <p>Vielen Dank! Wir melden uns innerhalb von 24 Stunden.</p>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-top">
+    <div>
+      <div class="foot-logo">Krause <span>&amp;</span> S&ouml;hne GmbH</div>
+      <p class="foot-desc">Meisterbetrieb f&uuml;r Hoch- und Ausbau, Sanit&auml;r, Elektro und Innenausbau. Gegr&uuml;ndet 1978 in Berlin. Handwerk mit Pr&auml;zision und Haltung.</p>
+      <div class="foot-rule"></div>
+      <div class="foot-contact">
+        <a href="tel:+493012345678">+49 (30) 123 456-78</a>
+        <a href="mailto:info@krause-soehne.de">info@krause-soehne.de</a>
+      </div>
+    </div>
+    <div>
+      <div class="foot-col-title">Leistungen</div>
+      <ul class="foot-links">
+        <li><a href="#leistungen">Hoch- &amp; Umbau</a></li>
+        <li><a href="#leistungen">Fensterbau</a></li>
+        <li><a href="#leistungen">Elektroinstallation</a></li>
+        <li><a href="#leistungen">Sanit&auml;r &amp; Heizung</a></li>
+        <li><a href="#leistungen">Innenausbau</a></li>
+        <li><a href="#leistungen">Maler &amp; Putz</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="foot-col-title">Unternehmen</div>
+      <ul class="foot-links">
+        <li><a href="#unternehmen">&Uuml;ber uns</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#referenzen">Referenzen</a></li>
+        <li><a href="mailto:jobs@krause-soehne.de">Karriere</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="foot-col-title">Service</div>
+      <ul class="foot-links">
+        <li><a href="tel:+493012345699">24h-Notdienst</a></li>
+        <li><a href="#kontakt">Kostenvoranschlag</a></li>
+        <li><a href="#kontakt">Erstberatung</a></li>
+        <li><a href="mailto:info@krause-soehne.de">FAQ per E-Mail</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bot">
+    <p class="foot-copy">&copy; 2025 <strong>Krause &amp; S&ouml;hne GmbH</strong> &nbsp;&middot;&nbsp; Alle Rechte vorbehalten.</p>
+    <div class="foot-legal">
+      <a href="#" onclick="openModal('impressum');return false">Impressum</a>
+      <a href="#" onclick="openModal('datenschutz');return false">Datenschutz</a>
+      <a href="#" onclick="openModal('agb');return false">AGB</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Cursor
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop)})();
+document.querySelectorAll('a,button,.srv-card,.ref-item,.t-card,.k-item,.u-panel,.h-stat').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.transform='translate(-50%,-50%) scale(2.5)';ring.style.width='56px';ring.style.height='56px';ring.style.opacity='.1'});
+  el.addEventListener('mouseleave',()=>{cur.style.transform='translate(-50%,-50%) scale(1)';ring.style.width='32px';ring.style.height='32px';ring.style.opacity='.25'});
+});
+
+// Nav scroll
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('raised',scrollY>50),{passive:true});
+
+// Hamburger
+const ham=document.getElementById('ham'),mob=document.getElementById('mobNav');
+ham.addEventListener('click',()=>{ham.classList.toggle('open');mob.classList.toggle('open');document.body.style.overflow=mob.classList.contains('open')?'hidden':''});
+function closeMob(){ham.classList.remove('open');mob.classList.remove('open');document.body.style.overflow=''}
+
+// Reveal on scroll
+const obs=new IntersectionObserver((en)=>{en.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('on'),i*60)})},{threshold:.07});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Modals
+function openModal(id){document.getElementById('modal-'+id).classList.add('open');document.body.style.overflow='hidden'}
+function closeModal(id){document.getElementById('modal-'+id).classList.remove('open');document.body.style.overflow=''}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){['impressum','datenschutz','agb'].forEach(closeModal)}});
+
+// Netlify Form AJAX submit
+document.getElementById('anfrage-form').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const btn=this.querySelector('.btn-submit');
+  btn.textContent='Wird gesendet …';btn.disabled=true;
+  const data=new URLSearchParams(new FormData(this));
+  try{
+    await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:data.toString()});
+  }catch(err){console.warn('Netlify note:',err.message)}
+  document.getElementById('f-success').classList.add('show');
+  this.querySelectorAll('input:not([type=hidden]),select,textarea').forEach(el=>el.value='');
+  this.querySelector('[type=checkbox]').checked=false;
+  btn.style.display='none';
+});
+
+// Toast helper
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),3500)}
+</script>
+</body>
+</html>
